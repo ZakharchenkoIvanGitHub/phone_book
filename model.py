@@ -1,8 +1,9 @@
 from logger import log
+import json
 
 
 @log
-def get_data(id: int = None) -> dict:
+def get_data() -> list:
     """
     Выгружает данные из файла и возвращает словарь
     Если id существует, то возвращает только одну запись по id
@@ -19,7 +20,7 @@ def get_data_id(id: int) -> dict:
 
 
 @log
-def get_data_last_name(last_name: str) -> dict:
+def get_data_last_name(last_name: str) -> list:
     """
     Возвращает только одну запись по фамилии
     """
@@ -33,4 +34,13 @@ def add_data(data: dict):
     Если в принимаемом словаре имеется поле id, тогда сначала удаляет эту запись из словаря.
     :param data:
     """
-    pass
+
+    with open("db.json", 'r', encoding="utf-8") as file:
+        data_file = json.load(file)
+
+    id = data_file["last_id"]["id"] + 1
+    data_file["last_id"]["id"] = id
+    data["id"] = id
+    data_file["items"].append(data)
+    with open("db.json", "w", encoding="utf-8") as file:
+        json.dump(data_file, file, indent=2, ensure_ascii=False)
