@@ -5,7 +5,7 @@ from logger import log
 def greatings():
     '''Вывод приветствия.'''
 
-    print('Добро пожаловать в Справочник')
+    print('Справочник')
     pass
 
 
@@ -23,7 +23,7 @@ def menu() -> int:
     """
     print('Меню')
     return int(input(
-        '0 - Выход \n1 - Загрузить из файла и вывести на экран \n2 - Добавить новую запись \n3 - Редактировать запись по id \n4 - Поиск по фамилии'))
+        '0 - Выход \n1 - Загрузить из файла и вывести на экран \n2 - Добавить новую запись \n3 - Редактировать запись по id \n4 - Поиск по фамилии \n'))
 
 
 @log
@@ -31,7 +31,13 @@ def print_book(data: list):  # список
     """
     Вывод в консоль данных содержимого справочника
     """
-    pass
+    for my_dict in data :
+        print("Имя:", my_dict['first_name']) 
+        print("Фамилия:", my_dict['last_name'])
+        print("Телефон:", *my_dict['phone_number'])
+        print("Дата рождения:", my_dict['birthday'])
+        print("Место работы:", my_dict['workplace'])
+    
 
 
 @log
