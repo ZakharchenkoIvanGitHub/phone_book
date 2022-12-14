@@ -16,7 +16,14 @@ def get_data_id(id: int) -> dict:
     """
     Возвращает только одну запись по id
     """
-    pass
+    with open("db.json", "r", encoding="utf-8") as file:
+        data_file = json.load(file)
+        for item in data_file['items']:
+            if item['id'] == 'id':
+                return item[id]
+            else:
+                'not found'
+    # pass
 
 
 @log
@@ -24,7 +31,16 @@ def get_data_last_name(last_name: str) -> list:
     """
     Возвращает только одну запись по фамилии
     """
-    pass
+    with open("db.json", "r", encoding="utf-8") as file:
+        data_file = json.load(file)
+        for item in data_file['items']:
+            if item['id'] == 'last_name':
+                return item[last_name]
+            else:
+                'not found'
+
+
+# pass
 
 
 @log
